@@ -1,0 +1,20 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Node.js/Express backend for HuddleAI — REST APIs, JWT auth, and an AI teammate (Ashvin) powered by RAG and function calling.",
+  "homepage": "https://github.com/shrwn08/huddle_ai_server#readme",
+  "bugs": {
+    "url": "https://github.com/shrwn08/huddle_ai_server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shrwn08/huddle_ai_server.git"
+  },
+  "license": "ISC",
+  "author": "Shrawan",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
