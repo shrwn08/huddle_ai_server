@@ -32,3 +32,8 @@ export const signup = async (req, res) => {
       .json({ message: "Server unable to signup", sucess: false, error });
   }
 };
+
+
+export const login = async (req, res) =>{
+    
+}
