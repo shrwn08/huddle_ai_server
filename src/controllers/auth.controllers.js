@@ -1,4 +1,7 @@
 import User from "../models/user.models.js";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const signup = async (req, res) => {
   try {
@@ -33,7 +36,40 @@ export const signup = async (req, res) => {
   }
 };
 
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-export const login = async (req, res) =>{
     
-}
+    const user = await User.findOne({ email });
+    
+    if (!user) {
+        return res
+        .status(400)
+        .json({ success: false, message: "Invalid creadential" });
+    }
+    
+    const isPasswordMatched = await user.comparePassword(password);
+
+
+    if (!isPasswordMatched) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid Credential" });
+    }
+
+    const token = await jwt.sign(
+      { userId: user._id },
+      process.env.JWT_SECRET_TOKEN,
+      { expiresIn: "7d" },
+    );
+
+    res
+      .status(200)
+      .json({ success: true, token, message: "Loggedin successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Server error", error: error.message });
+  }
+};

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs"
 
 
 
@@ -42,6 +43,10 @@ userSchema.pre('save', async function(){
         return "Unable to hash the password", error;
     }
 });
+
+userSchema.methods.comparePassword = async function (password){
+    return await bcrypt.compare(password, this.password);
+}
 
 const User = mongoose.model("User", userSchema);
 
