@@ -21,18 +21,14 @@ const userSchema = mongoose.Schema({
         trim : true,
         validate : {
             validator : function (value){
-                return /^[@\s]+$/.test(value);
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
             }
         }
     },
     password : {
         type : String,
         require : [true, "password is required"],
-        validate : {
-            validator : function (value){
-                 return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/.test(value);
-            }
-        }
+        
     }
 },{timestamps : true});
 
