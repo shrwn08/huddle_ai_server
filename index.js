@@ -1,5 +1,6 @@
 import express  from "express";
 import { connectDB } from "./src/config/connection.js";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -8,6 +9,8 @@ const PORT = 3000;
 
 
 connectDB();
+
+
 
 
 
