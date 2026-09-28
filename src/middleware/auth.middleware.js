@@ -7,7 +7,7 @@ export const protect = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization || "";
 
-    const token = authHeader.startWith("Bearer ")
+    const token = authHeader.startsWith("Bearer ")
       ? authHeader.split(" ")[1]
       : null;
 
@@ -31,3 +31,5 @@ export const protect = async (req, res, next) => {
       .json({ success: false, message: "Unauthorized access" });
   }
 };
+
+
