@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs"
 const userSchema = mongoose.Schema({
     fullname : {
         type : String,
-        require : [true, "fullname is required"],
+        required : [true, "fullname is required"],
         trim : true,
         validate : {
             validator : function(value){
@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema({
     },
     email : {
         type : String,
-        require : [true, "email is required"],
+        required : [true, "email is required"],
         trim : true,
         validate : {
             validator : function (value){
@@ -28,7 +28,7 @@ const userSchema = mongoose.Schema({
     },
     password : {
         type : String,
-        require : [true, "password is required"],
+        required : [true, "password is required"],
         
     }
 },{timestamps : true});
