@@ -16,6 +16,14 @@ const userSchema = mongoose.Schema({
             message : "fullname only accept A-Z, a-z."
         }
     },
+    username:{
+        type : String,
+        required : [true, "username is required"],
+        trim : true,
+        unique : true,
+        lowercase : true,
+        set : (value) => value.replace(/^@+/,"")
+    },
     email : {
         type : String,
         required : [true, "email is required"],
@@ -31,7 +39,17 @@ const userSchema = mongoose.Schema({
         required : [true, "password is required"],
         
     }
-},{timestamps : true});
+},{timestamps : true,
+    toJSON : {virtuals : true},
+    toObject : {virtuals : true}
+});
+
+
+//virtual field that returns the username 
+
+userSchema.virtual("hundle").get(function(){
+    return this.username;
+});
 
 userSchema.pre('save', async function(){
     if(!this.isModified("password")) return ;
